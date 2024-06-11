@@ -23,12 +23,28 @@ export default {
 </script>
 <template>
     <form @submit.prevent="search()">
-        <div class="input-group mb-3">
-            <input type="search" class="form-control" placeholder="search..." v-model="search_text">
-            <button class="btn btn-outline-secondary" type="submit">
+        <div class="input-group">
+            <input type="search" class="form-control" v-model="search_text">
+            <button class="btn" type="submit">
                 <i class="fas fa-search fa-lg fa-fw"></i>
             </button>
         </div>
     </form>
 </template>
-<style></style>
+<style scoped>
+form {
+    width: calc((100%/12)*3);
+
+    .btn {
+        --bs-btn-color: var(--button-purple) !important;
+    }
+
+    .btn:hover{
+        color: var(--button-mag) !important;
+    }
+
+    .btn:active {
+        border-color: var(--bg-blue) !important;
+    }
+}
+</style>

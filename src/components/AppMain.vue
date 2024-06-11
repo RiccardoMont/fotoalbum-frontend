@@ -1,6 +1,8 @@
 <script>
 //import axios from 'axios';
 import { state } from '../state';
+import AppCardPhoto from './AppCardPhoto.vue';
+import AppCarousel from './AppCarousel.vue';
 
 export default {
     name: 'AppMain',
@@ -9,8 +11,12 @@ export default {
             state
         }
     },
+    components: {
+        AppCarousel,
+        AppCardPhoto
+    },
     methods: {
-        initialApi(){
+        initialApi() {
             const url = state.base_api_url + state.photos_endpoint;
             state.fetchData(url);
         }
@@ -24,12 +30,37 @@ export default {
 
 </script>
 <template>
-    <h1>Home guests</h1>
-
-    <div v-for="(photo, index) in state.photos">
-        <h3>{{ photo.title }}</h3>
-        <img :src="photo.image.startsWith('https://') ? photo.image : state.base_api_url + '/storage/' + photo.image"
-            alt="">
+    <div class="container">
+        <h1>Home guests</h1>
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="http://127.0.0.1:8000/storage/uploads/vIN2fKwraGMHjxtiv4655ffo3o5HnFRi0EwACoxD.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="http://127.0.0.1:8000/storage/uploads/ClMPS2VPfOXr6H426UyUmDYiMggl8mJyEwx4imoG.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="http://127.0.0.1:8000/storage/uploads/XAP97flGGkerlYygRyOXsGpswwx3hUHsjSgGc6wW.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="row justify-content-between align-items-center gap-2">
+            <AppCardPhoto v-for="photo in state.photos" :photo="photo"></AppCardPhoto>
+        </div>
     </div>
 </template>
 <style></style>

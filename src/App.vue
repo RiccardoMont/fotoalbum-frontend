@@ -13,13 +13,18 @@ export default {
 </script>
 
 <template>
-<AppHeader></AppHeader>
-<AppMain></AppMain>
+  <div class="app">
+    <AppHeader></AppHeader>
+    <AppMain></AppMain>
+  </div>
 
 
-  
 </template>
 
 <style>
-
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>

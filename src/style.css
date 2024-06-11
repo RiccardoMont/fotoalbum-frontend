@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --lal:#06070d;
+    --lol: #161a1f;
+    --lul: #29303a;
+    --bg-blue: #0b041a;
+    --bg-softblue: #10072a;
+    --bg-very-softblue: #1e143e;
+    --text-white: #fafafa;
+    --button-purple: #411d79;
+    --button-hover-purple: #55279f;
+    --button-mag: #9f057b;
+    --button-hover-mag: #c40798;
+
+}
+
+body {
+    font-family: "Alef", sans-serif;
+    background-color: var(--bg-blue);
+}
+
+.row>*{
+    padding: 0;
+}
+
+
+
+input {
+    background-color: var(--bg-very-softblue) !important;
+    border-color: var(--bg-very-softblue) !important;
+    color: var(--text-white) !important;
+}
+
+input:focus {
+    background-color: var(--bg-very-softblue) !important;
+    color: var(--text-white) !important;
+    border-color: var(--bg-very-softblue) !important;
+    box-shadow: 0 0 0 0.25rem var(--button-hover-purple) !important;
+
+}
