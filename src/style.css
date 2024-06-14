@@ -29,6 +29,26 @@ body {
 }
 
 
+/*SCROLLBARS*/
+::-webkit-scrollbar {
+    width: 5px;
+    height: 0;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--button-mag);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--button-hover-mag); 
+  }
+
+
 
 input {
     background-color: var(--bg-very-softblue) !important;

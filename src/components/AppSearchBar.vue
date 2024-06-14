@@ -14,8 +14,7 @@ export default {
     methods: {
         search() {
             const url = state.base_api_url + state.photos_endpoint + `?search=${this.search_text}`;
-            console.log(url);
-            state.fetchData(url);
+            state.fetchDataSearch(url);
         }
     }
 }

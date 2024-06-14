@@ -8,7 +8,8 @@ export default {
     name: 'AppMain',
     data() {
         return {
-            state
+            state,
+            category_id: ''
         }
     },
     components: {
@@ -17,10 +18,24 @@ export default {
     },
     methods: {
         initialApi() {
-            const url = state.base_api_url + state.photos_endpoint;
-            state.fetchData(url);
-        }
+            state.endpoints.forEach(end => {
+                const startingApi = `${state.base_api_url}${end}`;
+                state.fetchData(startingApi);
+            })
+        },
 
+        categoryFilter() {
+            const target = event.target.querySelector('button').getAttribute('id');
+            this.category_id = target;
+            
+            
+
+            const url = `${state.base_api_url}${state.categories_endpoint}/filter?category=${this.category_id}`;    
+            console.log(url);
+           
+            state.fetchDataCategoriesFilter(url);
+            
+        }
     },
     mounted() {
         this.initialApi();
@@ -32,7 +47,12 @@ export default {
 <template>
     <div class="container">
         <h1>Home guests</h1>
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="d-flex flex-no-wrap overflow-x-auto gap-2">
+            <form @submit.prevent="this.categoryFilter()" v-for="category in state.categories">
+                    <button type="submit" class="badge" :id="category.id" >{{ category.slug }}</button>
+            </form>
+        </div>
+        <div id="carouselExampleAutoplaying" class="carousel slide w-25" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="http://127.0.0.1:8000/storage/uploads/vIN2fKwraGMHjxtiv4655ffo3o5HnFRi0EwACoxD.jpg"
@@ -63,4 +83,10 @@ export default {
         </div>
     </div>
 </template>
-<style></style>
+<style scoped>
+.badge {
+    cursor: pointer;
+    background-color: var(--button-purple);
+    border: 0;
+}
+</style>
