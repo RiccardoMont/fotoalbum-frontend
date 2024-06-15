@@ -8,6 +8,7 @@ export const state = reactive({
 
     photos_endpoint: '/api/photos',
     categories_endpoint: '/api/categories',
+    highlighted_endpoint: '/api/bestshoots/highlighted',
     endpoints : ['/api/categories', '/api/photos'],
     support: '',
     photos: '', 
@@ -24,7 +25,6 @@ export const state = reactive({
                 }
                 if(url.endsWith(this.photos_endpoint)){
                     this.photos = resp.data.results;
-                    console.log(this.photos)
                 }
             })
             .catch(err => {

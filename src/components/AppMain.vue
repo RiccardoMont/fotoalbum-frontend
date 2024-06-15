@@ -12,6 +12,7 @@ export default {
             //Array vuoto di supporto per filtrare tramite le categorie
             category_ids: [],
             //isActive: false
+            
         }
     },
     components: {
@@ -59,6 +60,12 @@ export default {
 
             //this.isActive = true;
 
+        },
+
+        //Filtro per le foto etichettate "Highlighted" ("in evidenza")
+        highlightedFilter() {
+            const url = `${state.base_api_url}${state.highlighted_endpoint}`;
+            state.fetchDataSearch(url);
         }
     },
     mounted() {
@@ -102,6 +109,7 @@ export default {
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+        <button class="my-4 btn btn-primary" @click="this.highlightedFilter()">Highlighted</button>
         <div class="row justify-content-between align-items-center gap-2">
             <AppCardPhoto v-for="photo in state.photos" :photo="photo"></AppCardPhoto>
         </div>
