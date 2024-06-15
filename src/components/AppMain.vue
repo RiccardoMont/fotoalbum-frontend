@@ -9,7 +9,9 @@ export default {
     data() {
         return {
             state,
-            category_id: ''
+            //Array vuoto di supporto per filtrare tramite le categorie
+            category_ids: [],
+            //isActive: false
         }
     },
     components: {
@@ -17,6 +19,7 @@ export default {
         AppCardPhoto
     },
     methods: {
+        //Funzione per popolare sia le categorie che le foto al caricamento iniziale
         initialApi() {
             state.endpoints.forEach(end => {
                 const startingApi = `${state.base_api_url}${end}`;
@@ -24,17 +27,38 @@ export default {
             })
         },
 
+        //Filtro per filtrare tramite le categorie
         categoryFilter() {
+            //Prendo l'id della categoria dove si è cliccato
             const target = event.target.querySelector('button').getAttribute('id');
-            this.category_id = target;
-            
-            
 
-            const url = `${state.base_api_url}${state.categories_endpoint}/filter?category=${this.category_id}`;    
-            console.log(url);
-           
-            state.fetchDataCategoriesFilter(url);
-            
+
+            //Se l'id sulla quale si è cliccato è già incluso nell'array, allora lo si elimina
+            if (this.category_ids.includes(target)) {
+
+                const id_position = this.category_ids.indexOf(target);
+
+                this.category_ids.splice(id_position, 1);
+
+            } else {
+                //Aggiungo l'id all'array di supporto
+                this.category_ids.push(target);
+            }
+
+            //Se l'array delle categorie è vuoto, allora si richiamano tutte le foto in pagina tramite la richiesta iniziale
+            if (this.category_ids.length == 0) {
+                const url = `${state.base_api_url}${state.photos_endpoint}`;
+                state.fetchData(url);
+
+            } else {
+                //Prendo tutti gli elementi dell'array di supporto e li metto nell'url separati dalla virgola per poi richiamare il metodo di filtraggio per categorie
+                const categories_joined = this.category_ids.join();
+                const url = `${state.base_api_url}${state.categories_endpoint}/filter?category=${categories_joined}`;
+                state.fetchDataSearch(url);
+            }
+
+            //this.isActive = true;
+
         }
     },
     mounted() {
@@ -49,7 +73,7 @@ export default {
         <h1>Home guests</h1>
         <div class="d-flex flex-no-wrap overflow-x-auto gap-2">
             <form @submit.prevent="this.categoryFilter()" v-for="category in state.categories">
-                    <button type="submit" class="badge" :id="category.id" >{{ category.slug }}</button>
+                <button type="submit" class="badge" :id="category.id">{{ category.slug }}</button>
             </form>
         </div>
         <div id="carouselExampleAutoplaying" class="carousel slide w-25" data-bs-ride="carousel">

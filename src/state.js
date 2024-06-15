@@ -24,6 +24,7 @@ export const state = reactive({
                 }
                 if(url.endsWith(this.photos_endpoint)){
                     this.photos = resp.data.results;
+                    console.log(this.photos)
                 }
             })
             .catch(err => {
@@ -31,7 +32,7 @@ export const state = reactive({
             })
     },
 
-//Funzione per il filtro di ricerca tramite la searchbar
+//Funzione per il filtro di ricerca tramite la searchbar e tramite categorie
     fetchDataSearch(url) {
         axios
             .get(url)
@@ -41,20 +42,6 @@ export const state = reactive({
             .catch(err => {
                 console.error(err);
             })
-    },
-
-//Funzione per il filtraggio delle categorie
-    fetchDataCategoriesFilter(url) {
-        axios
-            .get(url)
-            .then(resp => {
-                console.log(this.support == '');
-                console.log(resp);    
-                this.photos = resp.data.results;
-                console.log(this.photos);
-            })
-            .catch(err => {
-                console.error(err);
-            })
     }
+
 })
