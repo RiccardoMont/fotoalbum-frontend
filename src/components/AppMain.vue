@@ -17,8 +17,10 @@ export default {
             name: '',
             email: '',
             message: '',
-            //Stringa messaggio di errore per email non valida
-            error_email: ''
+            //Stringa messaggio di errore per parametri non validi
+            error_email: '',
+            error_name: '',
+            error_message: ''
 
         }
     },
@@ -85,25 +87,22 @@ export default {
         },
 
         //Validazione dell'email inserita
-        validateEmail(email){
-                return String(email)
-                    .toLowerCase()
-                    .match(
-                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                    );
-            },
+        validateEmail(email) {
+            return String(email)
+                .toLowerCase()
+                .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                );
+        },
 
         //Metodo di invio del messaggio da parte dell'utente
         submitMessage() {
 
             //Reimposto l'errore a stringa vuota nel caso il tentativo precedente avesse prodotto un errore
             this.error_email = '';
-            //Se la validazione fallisce popolo il messaggio di errore ed interrompo la funzione
-            if(!(this.validateEmail(this.email))){
-                this.error_email = 'Email not valid';
-                return
-            };
-            console.log('arrivo alla validazione');
+            this.error_name = '';
+            this.error_text = '';
+
 
             //Oggetto contenete i dati dell'utente, da inviare al DB
             const payload = {
@@ -112,10 +111,23 @@ export default {
                 message: this.message
             }
 
-
-            //Creo un nuovo url ed utilizzo la funzione nello state per inviare
-            const url = `${state.base_api_url}${state.contacts_endopoint}`;
-            state.sendingEmail(url, payload);
+            //Se la validazione fallisce popolo il messaggio di errore
+            if (this.name == '') {
+                this.error_name = 'Name required';
+            }
+            if (!(this.validateEmail(this.email))) {
+                this.error_email = 'Email not valid';
+            }
+            if (this.message == '') {
+                this.error_message = 'Message required';
+            }
+            //Se non vi sono errori procedo con la chiamata
+            if ((this.name != '') && this.validateEmail(this.email) && (this.message != '')) {
+                //Creo un nuovo url ed utilizzo la funzione nello state per inviare
+                const url = `${state.base_api_url}${state.contacts_endopoint}`;
+                console.log(url);
+                state.sendingEmail(url, payload);
+            }
         }
     },
     mounted() {
@@ -143,18 +155,21 @@ export default {
                         <label for="name" class="form-label">name</label>
                         <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelper"
                             placeholder="Luke skywalker" v-model="name" />
-                        <small id="nameHelper" class="form-text text-muted">Type your full name </small>
+                        <small id="nameHelper" class="form-text text-muted" v-if="this.error_name">{{ this.error_name }}
+                        </small>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelper"
                             placeholder="abc@mail.com" v-model="email" />
-                        <small id="emailHelper" class="form-text text-muted">{{ this.error_email }}</small>
+                        <small id="emailHelper" class="form-text text-muted" v-if="this.error_email">{{ this.error_email
+                            }}</small>
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Message</label>
                         <textarea class="form-control" name="message" id="message" rows="5"
                             v-model="message"></textarea>
+                        <small v-if="this.error_message">{{ this.error_message }}</small>
                     </div>
                     <button type="submit" class="btn btn-dark">
                         Send
