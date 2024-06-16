@@ -64,8 +64,17 @@ export default {
 
         //Filtro per le foto etichettate "Highlighted" ("in evidenza")
         highlightedFilter() {
-            const url = `${state.base_api_url}${state.highlighted_endpoint}`;
-            state.fetchDataSearch(url);
+
+            const target = document.getElementById('highlighted-btn');
+            if(!(target.classList.contains('active'))){
+                target.classList.add('active');
+                const url = `${state.base_api_url}${state.highlighted_endpoint}`;
+                state.fetchDataSearch(url);
+            } else {
+                target.classList.remove('active');
+                const url = `${state.base_api_url}${state.photos_endpoint}`;
+                state.fetchDataSearch(url);
+            }
         }
     },
     mounted() {
@@ -109,7 +118,7 @@ export default {
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <button class="my-4 btn btn-primary" @click="this.highlightedFilter()">Highlighted</button>
+        <button id="highlighted-btn" class="my-4 btn btn-primary" @click="this.highlightedFilter()">Highlighted</button>
         <div class="row justify-content-between align-items-center gap-2">
             <AppCardPhoto v-for="photo in state.photos" :photo="photo"></AppCardPhoto>
         </div>
