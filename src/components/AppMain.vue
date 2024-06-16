@@ -1,5 +1,6 @@
 <script>
 //import axios from 'axios';
+import axios from 'axios';
 import { state } from '../state';
 import AppCardPhoto from './AppCardPhoto.vue';
 import AppCarousel from './AppCarousel.vue';
@@ -11,8 +12,14 @@ export default {
             state,
             //Array vuoto di supporto per filtrare tramite le categorie
             category_ids: [],
-            //isActive: false
-            
+
+            //Parametri da inviare per il contact form
+            name: '',
+            email: '',
+            message: '',
+            //Stringa messaggio di errore per email non valida
+            error_email: ''
+
         }
     },
     components: {
@@ -66,7 +73,7 @@ export default {
         highlightedFilter() {
 
             const target = document.getElementById('highlighted-btn');
-            if(!(target.classList.contains('active'))){
+            if (!(target.classList.contains('active'))) {
                 target.classList.add('active');
                 const url = `${state.base_api_url}${state.highlighted_endpoint}`;
                 state.fetchDataSearch(url);
@@ -75,6 +82,40 @@ export default {
                 const url = `${state.base_api_url}${state.photos_endpoint}`;
                 state.fetchDataSearch(url);
             }
+        },
+
+        //Validazione dell'email inserita
+        validateEmail(email){
+                return String(email)
+                    .toLowerCase()
+                    .match(
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                    );
+            },
+
+        //Metodo di invio del messaggio da parte dell'utente
+        submitMessage() {
+
+            //Reimposto l'errore a stringa vuota nel caso il tentativo precedente avesse prodotto un errore
+            this.error_email = '';
+            //Se la validazione fallisce popolo il messaggio di errore ed interrompo la funzione
+            if(!(this.validateEmail(this.email))){
+                this.error_email = 'Email not valid';
+                return
+            };
+            console.log('arrivo alla validazione');
+
+            //Oggetto contenete i dati dell'utente, da inviare al DB
+            const payload = {
+                name: this.name,
+                email: this.email,
+                message: this.message
+            }
+
+
+            //Creo un nuovo url ed utilizzo la funzione nello state per inviare
+            const url = `${state.base_api_url}${state.contacts_endopoint}`;
+            state.sendingEmail(url, payload);
         }
     },
     mounted() {
@@ -86,6 +127,41 @@ export default {
 </script>
 <template>
     <div class="container">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Contact us</button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+            aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Contact us</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p>balblabla</p>
+                <form @submit.prevent="submitMessage()">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">name</label>
+                        <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelper"
+                            placeholder="Luke skywalker" v-model="name" />
+                        <small id="nameHelper" class="form-text text-muted">Type your full name </small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelper"
+                            placeholder="abc@mail.com" v-model="email" />
+                        <small id="emailHelper" class="form-text text-muted">{{ this.error_email }}</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" name="message" id="message" rows="5"
+                            v-model="message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark">
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
         <h1>Home guests</h1>
         <div class="d-flex flex-no-wrap overflow-x-auto gap-2">
             <form @submit.prevent="this.categoryFilter()" v-for="category in state.categories">

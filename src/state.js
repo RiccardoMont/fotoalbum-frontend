@@ -9,6 +9,7 @@ export const state = reactive({
     photos_endpoint: '/api/photos',
     categories_endpoint: '/api/categories',
     highlighted_endpoint: '/api/bestshoots/highlighted',
+    contacts_endopoint: '/api/contacts',
     endpoints : ['/api/categories', '/api/photos'],
     support: '',
     photos: '', 
@@ -42,6 +43,17 @@ export const state = reactive({
             .catch(err => {
                 console.error(err);
             })
-    }
+    },
 
+//Funzione per l'invio del messaggio da parte dell'utente al DB. Accetta il parametro dell'url e l'oggetto contenente i dati inseriti nel form
+    sendingEmail(url, payload){
+        axios
+        .post(url, payload)
+        .then(resp => {
+            console.log(resp);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
 })
