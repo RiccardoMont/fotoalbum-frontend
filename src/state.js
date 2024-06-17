@@ -13,8 +13,15 @@ export const state = reactive({
     endpoints: ['/api/categories', '/api/photos'],
     support: '',
     photos: '',
+    //Array dove vengono messi array di photo raggruppati per categoria
     gun_photos: [],
+    //Array che raccoglie tutte le categorie utilizzato per poi stampare il nome in pagina
+    category_rows: [],
     categories: '',
+    //Array che raccoglie tutte le foto highlighted (in evidenza)
+    highlighted_photos: [],
+
+    
     
 
     //Funzione per il caricamento iniziale della pagina
@@ -46,18 +53,49 @@ export const state = reactive({
             })
     },
 
+    //Funzione che raccoglie tutte le foto raggruppate per categoria
     fetchDataSearchGun(url) {
         axios
             .get(url)
             .then(resp => {
                 this.gun_photos.push(resp.data.results);
-                console.log(this.gun_photos);
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    },
+
+    //Crea una copia della lista delle categorie e attua un ciclo per cercare tutti i gruppi di foto invocando la fetchDataSearchGun
+    fetchCategoriesRows(url) {
+        axios
+            .get(url)
+            .then(resp => {
+                this.category_rows = [...resp.data.results];
+
+                this.category_rows.forEach(category => {
+                    const url = `${state.base_api_url}${state.categories_endpoint}/filter?category=${category.id}`;
+                    this.fetchDataSearchGun(url);
+                })
             })
             .catch(err => {
                 console.error(err);
             })
     },
       
+    //Chiamata per prendere tutte le foto highlighted
+    highlightedRow(url) {
+        axios
+        .get(url)
+            .then(resp => {
+                this.highlighted_photos = [...resp.data.results];
+                console.log(resp.data.results);
+            })
+            .catch(err => {
+            console.error(err);
+        })
+        
+
+    },
 
     //Funzione per l'invio del messaggio da parte dell'utente al DB. Accetta il parametro dell'url e l'oggetto contenente i dati inseriti nel form
     sendingEmail(url, payload) {

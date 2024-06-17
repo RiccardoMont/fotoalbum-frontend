@@ -5,23 +5,22 @@ import { state } from '../state';
 import AppCarousel from './AppCarousel.vue';
 import AppCategoriesFilter from './AppCategoriesFilter.vue';
 import AppCategoriesRowsBody from './AppCategoriesRowsBody.vue';
+import AppHighlightedRow from './AppHighlightedRow.vue';
 
 
 export default {
     name: 'AppMain',
     data() {
         return {
-            state
-            
-
-
+            state,
+           
         }
     },
     components: {
         AppCategoriesFilter,
         AppCarousel,
+        AppHighlightedRow,
         AppCategoriesRowsBody
-        
     },
     methods: {
         //Funzione per popolare sia le categorie che le foto al caricamento iniziale
@@ -31,8 +30,6 @@ export default {
                 state.fetchData(startingApi);
             })
         },
-
-
 
         //Filtro per le foto etichettate "Highlighted" ("in evidenza")
         highlightedFilter() {
@@ -49,24 +46,20 @@ export default {
             }
         },
 
+        
+
     },
     mounted() {
-
         this.initialApi();
         
-        
-
-
     }
-
 }
-
 </script>
 <template>
     <div class="container">
         <AppCarousel></AppCarousel>
         <AppCategoriesFilter></AppCategoriesFilter>
-        <button id="highlighted-btn" class="my-4 btn btn-primary" @click="this.highlightedFilter()">Highlighted</button>
+        <AppHighlightedRow></AppHighlightedRow>
         <AppCategoriesRowsBody></AppCategoriesRowsBody>
     </div>
 </template>

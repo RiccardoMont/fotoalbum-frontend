@@ -5,9 +5,6 @@
 }
 
 :root {
-    --lal:#06070d;
-    --lol: #161a1f;
-    --lul: #29303a;
     --bg-blue: #0b041a;
     --bg-softblue: #10072a;
     --bg-very-softblue: #1e143e;
@@ -16,6 +13,9 @@
     --button-hover-purple: #55279f;
     --button-mag: #9f057b;
     --button-hover-mag: #c40798;
+    --button-delete: #ff0246;
+    --button-view: #3e15c5;
+    --button-edit: #8d42c2;
 
 }
 
@@ -43,6 +43,14 @@ body {
 
 
 
+
+.cat_title{
+    text-transform: uppercase;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
 /*SCROLLBARS*/
 ::-webkit-scrollbar {
     width: 5px;
@@ -63,6 +71,17 @@ body {
   }
 
 
+
+  .original-scrollable-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    height: 200px;
+    overflow: auto;
+}
+
+
+  /*INPUTS*/
 
 input {
     background-color: var(--bg-very-softblue) !important;
@@ -112,3 +131,6 @@ textarea:focus {
     background-color: var(--bg-softblue) !important;
     color: var(--text-white);
 }
+
+
+
