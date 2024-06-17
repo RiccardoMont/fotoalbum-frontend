@@ -13,7 +13,9 @@ export const state = reactive({
     endpoints: ['/api/categories', '/api/photos'],
     support: '',
     photos: '',
+    gun_photos: [],
     categories: '',
+    
 
     //Funzione per il caricamento iniziale della pagina
     fetchData(url) {
@@ -43,6 +45,19 @@ export const state = reactive({
                 console.error(err);
             })
     },
+
+    fetchDataSearchGun(url) {
+        axios
+            .get(url)
+            .then(resp => {
+                this.gun_photos.push(resp.data.results);
+                console.log(this.gun_photos);
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    },
+      
 
     //Funzione per l'invio del messaggio da parte dell'utente al DB. Accetta il parametro dell'url e l'oggetto contenente i dati inseriti nel form
     sendingEmail(url, payload) {

@@ -14,7 +14,7 @@ export default {
 }
 </script>
 <template>
-    <div class="d-flex justify-content-center w-100 mb-4">
+    <div class="d-flex justify-content-center w-100 my-4">
         <div id="carouselExampleAutoplaying" class="carousel slide col-md-12 col-lg-9 overflow-hidden"
             data-bs-ride="carousel">
             <div class="carousel-inner">

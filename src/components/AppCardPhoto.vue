@@ -26,15 +26,15 @@ export default {
 <style scoped>
 .card {
     
-    width: 24%; /*calc((100%/12)*3 - 1rem) */
-    overflow: hidden;
     border-radius: 0;
     background-color: inherit;
     cursor: pointer;
+    display: inline-block !important;
+    min-width: unset !important;
 
     & img {
         opacity: 1;
-        width: 100%;
+        height: 100%;
     }
 
     & .card-img-overlay {
