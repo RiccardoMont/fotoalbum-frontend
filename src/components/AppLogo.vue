@@ -9,8 +9,9 @@ export default {
 }
 </script>
 <template>
-    <div class="d-flex justify-content-between align-items-center">
-        <img class="logo" src="../assets/logo.svg" alt="">
+    <div class="col-xs-1 col-sm-2 col-md-3">
+        <img class="w-100 d-none d-md-block" src="../assets/logo.svg" alt="">
+        <svg class="w-75 d-md-none" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="128" height="128" viewBox="0 0 128 128"><g transform="matrix(0.8046875,0,0,0.8046875,12.221578124999994,12.221578124999994)"><svg viewBox="0 0 96 96" data-background-color="#0b041a" preserveAspectRatio="xMidYMid meet" height="128" width="128" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="tight-bounds" transform="matrix(1,0,0,1,0.25950000000000273,0.25950000000000273)"><svg viewBox="0 0 95.481 95.481" height="95.481" width="95.481"><g><svg viewBox="0 0 95.481 95.481" height="95.481" width="95.481"><g><svg viewBox="0 0 95.481 95.481" height="95.481" width="95.481"><g id="textblocktransform"><svg viewBox="0 0 95.481 95.481" height="95.481" width="95.481" id="textblock"><g><svg viewBox="0 0 95.481 95.481" height="95.481" width="95.481"><g><svg viewBox="0 0 95.481 95.481" height="95.481" width="95.481"><g><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" viewBox="15 15 49 49" enable-background="new 0 0 80 80" xml:space="preserve" height="95.481" width="95.481" class="icon-icon-0" data-fill-palette-color="accent" id="icon-0"><g fill="#9f057b" data-fill-palette-color="accent"><path fill="#9f057b" d="M64 52H15V15H64zM17 50H62V17H17z" data-fill-palette-color="accent"></path></g><g fill="#9f057b" data-fill-palette-color="accent"><path fill="#9f057b" d="M48.8 43H30.2C29.4 43 28.7 42.6 28.4 41.8 28.1 41.1 28.2 40.3 28.7 39.7L32.3 35.6C33 34.8 34.4 34.7 35.2 35.5L36.9 37.2 37 37.1 41.6 32.5C42.4 31.5 44 31.6 44.7 32.6L50.3 39.8C50.8 40.4 50.8 41.2 50.5 41.9S49.5 43 48.8 43M33.8 36.9L30.2 41H48.8L43.2 33.8 43.1 33.9 38.5 38.5C37.8 39.4 36.4 39.4 35.6 38.6z" data-fill-palette-color="accent"></path></g><g fill="#9f057b" data-fill-palette-color="accent"><path fill="#9f057b" d="M33 32C30.8 32 29 30.2 29 28S30.8 24 33 24 37 25.8 37 28 35.2 32 33 32M33 26C31.9 26 31 26.9 31 28S31.9 30 33 30 35 29.1 35 28 34.1 26 33 26" data-fill-palette-color="accent"></path></g><g fill="#9f057b" data-fill-palette-color="accent"><path fill="#9f057b" d="M28 64C25.8 64 24 62.2 24 60S25.8 56 28 56 32 57.8 32 60 30.2 64 28 64M28 58C26.9 58 26 58.9 26 60S26.9 62 28 62 30 61.1 30 60 29.1 58 28 58" data-fill-palette-color="accent"></path></g><g fill="#9f057b" data-fill-palette-color="accent"><path fill="#9f057b" d="M50 64C47.8 64 46 62.2 46 60S47.8 56 50 56 54 57.8 54 60 52.2 64 50 64M50 58C48.9 58 48 58.9 48 60S48.9 62 50 62 52 61.1 52 60 51.1 58 50 58" data-fill-palette-color="accent"></path></g><g fill="#9f057b" data-fill-palette-color="accent"><circle fill="#9f057b" cx="39" cy="60" r="4.0" data-fill-palette-color="accent"></circle></g></svg></g></svg></g></svg></g></svg></g></svg></g></svg></g><defs></defs></svg><rect width="95.481" height="95.481" fill="none" stroke="none" visibility="hidden"></rect></g></svg></g></svg>
     </div>
 </template>
 <style scoped>
@@ -18,8 +19,6 @@ export default {
 div{
     cursor: pointer;
 }
-.logo {
-    width: 250px;
-}
+
 
 </style>

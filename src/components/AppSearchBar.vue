@@ -16,12 +16,13 @@ export default {
             const url = state.base_api_url + state.photos_endpoint + `?search=${this.search_text}`;
             state.fetchDataSearch(url);
         }
+
     }
 }
 
 </script>
 <template>
-    <form @submit.prevent="search()">
+    <form class="col" @submit.prevent="search()">
         <div class="input-group">
             <input type="search" class="form-control" v-model="search_text">
             <button class="btn" type="submit">
