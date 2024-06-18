@@ -99,6 +99,7 @@ export const state = reactive({
 
     },
 
+    //Chiamata per prender il Weekly shoot ed il Monthly shoot
     fetchBestshoots(url){
         axios
         .get(url)

@@ -127,6 +127,13 @@ textarea:focus {
 .offcanvas {
     background-color: var(--bg-softblue) !important;
     color: var(--text-white);
+    
+
+
+    & .offcanvas-body {
+        overflow-y: unset;
+        background-color: var(--bg-softblue) !important;
+    }
 }
 
 

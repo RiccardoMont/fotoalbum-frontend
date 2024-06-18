@@ -33,7 +33,7 @@ export default {
 </template>
 <style scoped>
 form {
-    width: calc((100%/12)*7);
+    width: calc((100%/12)*5);
     position: absolute;
     top: 50%;
     left: 50%;

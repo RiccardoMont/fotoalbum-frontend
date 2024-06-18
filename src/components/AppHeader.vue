@@ -1,6 +1,7 @@
 <script>
 import { state } from '../state';
 import AppNavbar from './AppNavbar.vue';
+import AppSearchBar from './AppSearchBar.vue';
 
 
 export default {
@@ -12,6 +13,7 @@ export default {
     },
     components: {
         AppNavbar,
+        AppSearchBar
     }
 
 }
@@ -19,6 +21,7 @@ export default {
 <template>
     <section class="jumbotron position-relative">
         <AppNavbar></AppNavbar>
+        <AppSearchBar></AppSearchBar>
         
     </section>
 </template>

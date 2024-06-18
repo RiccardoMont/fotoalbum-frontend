@@ -14,7 +14,7 @@ export default {
 }
 </script>
 <template>
-    <div class="card">
+    <div v-if="photo.published" class="card">
         <img :src="photo.image.startsWith('https://') ? photo.image : state.base_api_url + '/storage/' + photo.image"
             alt="">
         <div class="card-img-overlay">

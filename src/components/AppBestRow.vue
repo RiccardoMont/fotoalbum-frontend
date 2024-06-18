@@ -54,7 +54,7 @@ export default {
 }
 
 .big-card {
-
+    cursor: pointer;
     position: relative  ;
     
     & .mask {

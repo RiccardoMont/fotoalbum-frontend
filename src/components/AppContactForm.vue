@@ -69,7 +69,7 @@ export default {
             aria-controls="offcanvasWithBothOptions">Contact us</span>
         <i class="fa-solid fa-envelope d-md-none"></i>
     </div>
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title fw-bold" id="offcanvasWithBothOptionsLabel">Contact us</h5>
