@@ -54,7 +54,7 @@ export default {
 }
 </script> 
 <template>
-    <div class="d-flex flex-no-wrap overflow-x-auto gap-2 bg-softblue">
+    <div class="d-flex flex-no-wrap overflow-x-auto gap-2 bg-softblue mt-5">
             <form @submit.prevent="this.categoryFilter()" v-for="category in state.categories">
                 <button type="submit" class="badge fs-18 py-3 fw-light" :id="category.id">{{ category.title }}</button>
             </form>

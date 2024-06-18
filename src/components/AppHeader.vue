@@ -25,6 +25,7 @@ export default {
 <style scoped>
 .jumbotron {
     height: 75vh;
+    width: 100%;
     background-image: url('src/assets/jumbotron.jpg');
     background-size: cover;
     background-repeat: no-repeat;

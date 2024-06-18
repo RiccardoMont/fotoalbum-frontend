@@ -25,7 +25,7 @@ export default {
     <div class="container-header my-2 px-4">
         <div class="row-header">
             <AppLogo></AppLogo>
-            <div class="d-flex align-items-end col-1">
+            <div class="d-flex align-items-end col-md-2 col-lg-2 col-xl-1">
                 <AppSearchBar></AppSearchBar>
                 <AppContactForm></AppContactForm>
             </div>
