@@ -109,11 +109,13 @@ export default {
     cursor: pointer;
     margin: 0.5rem 0 0.5rem 0.5rem;
     color: var(--text-white);
+    opacity: 0.6;
 
 }
 
 .contacts-btn:hover {
     box-shadow: 0px 2px 0px 0px var(--button-mag);
+    opacity: 0.9;
 }
 
 

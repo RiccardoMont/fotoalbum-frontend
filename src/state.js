@@ -10,6 +10,7 @@ export const state = reactive({
     categories_endpoint: '/api/categories',
     highlighted_endpoint: '/api/bestshoots/highlighted',
     contacts_endopoint: '/api/contacts',
+    bestshoots_endpoint: '/api/bestshoots',
     endpoints: ['/api/categories', '/api/photos'],
     support: '',
     photos: '',
@@ -20,6 +21,8 @@ export const state = reactive({
     categories: '',
     //Array che raccoglie tutte le foto highlighted (in evidenza)
     highlighted_photos: [],
+
+    bestshoots_photos:[],
 
     
     
@@ -88,13 +91,24 @@ export const state = reactive({
         .get(url)
             .then(resp => {
                 this.highlighted_photos = [...resp.data.results];
-                console.log(resp.data.results);
             })
             .catch(err => {
             console.error(err);
         })
         
 
+    },
+
+    fetchBestshoots(url){
+        axios
+        .get(url)
+            .then(resp => {
+                this.bestshoots_photos = [...resp.data.results];
+                console.log(resp.data.results);
+            })
+            .catch(err => {
+            console.error(err);
+        })
     },
 
     //Funzione per l'invio del messaggio da parte dell'utente al DB. Accetta il parametro dell'url e l'oggetto contenente i dati inseriti nel form

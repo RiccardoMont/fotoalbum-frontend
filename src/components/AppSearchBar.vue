@@ -33,7 +33,12 @@ export default {
 </template>
 <style scoped>
 form {
-    width: calc((100%/12)*3);
+    width: calc((100%/12)*7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
 
     .btn {
         --bs-btn-color: var(--button-purple) !important;
@@ -47,4 +52,9 @@ form {
         border-color: var(--bg-blue) !important;
     }
 }
+form:hover{
+    opacity: 0.85;
+}
+
+
 </style>

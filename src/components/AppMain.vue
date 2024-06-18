@@ -2,9 +2,10 @@
 import axios from 'axios';
 import { state } from '../state';
 
-import AppCarousel from './AppCarousel.vue';
+
 import AppCategoriesFilter from './AppCategoriesFilter.vue';
 import AppCategoriesRowsBody from './AppCategoriesRowsBody.vue';
+import AppBestRow from './AppBestRow.vue';
 import AppHighlightedRow from './AppHighlightedRow.vue';
 
 
@@ -17,8 +18,8 @@ export default {
         }
     },
     components: {
+        AppBestRow,
         AppCategoriesFilter,
-        AppCarousel,
         AppHighlightedRow,
         AppCategoriesRowsBody
     },
@@ -46,8 +47,6 @@ export default {
             }
         },
 
-        
-
     },
     mounted() {
         this.initialApi();
@@ -57,15 +56,13 @@ export default {
 </script>
 <template>
     <div class="container">
-        <AppCarousel></AppCarousel>
         <AppCategoriesFilter></AppCategoriesFilter>
+        <AppBestRow></AppBestRow>
         <AppHighlightedRow></AppHighlightedRow>
         <AppCategoriesRowsBody></AppCategoriesRowsBody>
     </div>
 </template>
 <style scoped>
-.soft-blue {
-    background-color: var(--bg-softblue);
-}
+
 
 </style>

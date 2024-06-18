@@ -32,18 +32,4 @@ export default {
 </template>
 <style scoped>
 
-.cat_title{
-    text-transform: uppercase;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-
-.original-scrollable-row {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 5px;
-    height: 200px;
-    overflow: auto;
-}
 </style>

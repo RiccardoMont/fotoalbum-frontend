@@ -18,6 +18,13 @@ export default {
 
 div{
     cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.5s ease-in-out;
+}
+div:hover{
+    
+    opacity: 0.9;
+    transition: opacity 0.5s ease-in-out;
 }
 
 

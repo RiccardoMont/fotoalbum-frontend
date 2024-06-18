@@ -19,7 +19,7 @@ export default {
 }
 </script>
 <template>
-    <div class="my-5 py-4 bord-highlighted">
+    <div class="mb-5 py-4 bord-highlighted">
             <div class="mb-2"><span class="cat_title fw-bold fs-2">Highlighted Shoots</span></div>
             <div class="original-scrollable-row">
                 <AppCardPhoto v-for="photo in state.highlighted_photos" :photo="photo"></AppCardPhoto>

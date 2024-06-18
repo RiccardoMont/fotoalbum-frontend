@@ -1,8 +1,7 @@
 <script>
 import { state } from '../state';
-import AppSearchBar from './AppSearchBar.vue';
-import AppLogo from './AppLogo.vue';
-import AppContactForm from './AppContactForm.vue';
+import AppNavbar from './AppNavbar.vue';
+
 
 export default {
     name: 'AppHeader',
@@ -12,36 +11,25 @@ export default {
         }
     },
     components: {
-        AppLogo,
-        AppSearchBar,
-        AppContactForm
+        AppNavbar,
     }
 
 }
 </script>
 <template>
-    <div class="container-header my-2">
-        <div class="row-header">
-            <AppLogo></AppLogo>
-            <div class="d-flex justify-content-between align-items-center col-xs-10 col-sm-9 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
-                <AppSearchBar></AppSearchBar>
-                <AppContactForm></AppContactForm>
-            </div>
-        </div>
-    </div>
+    <section class="jumbotron position-relative">
+        <AppNavbar></AppNavbar>
+        
+    </section>
 </template>
 <style scoped>
-.container-header {
-    width: 90%;
-    display: flex;
-    justify-content: center;
-
-    & .row-header {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
+.jumbotron {
+    height: 75vh;
+    background-image: url('src/assets/jumbotron.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
+
+
 </style>
