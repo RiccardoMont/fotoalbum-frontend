@@ -13,7 +13,10 @@ export default {
             //Stringa messaggio di errore per parametri non validi
             error_email: '',
             error_name: '',
-            error_message: ''
+            error_message: '',
+
+            //Loader
+
         }
     },
     methods: {
@@ -28,6 +31,8 @@ export default {
         },
         //Metodo di invio del messaggio da parte dell'utente
         submitMessage() {
+
+            state.loading = true;
 
             //Reimposto l'errore a stringa vuota nel caso il tentativo precedente avesse prodotto un errore
             this.error_email = '';
@@ -56,17 +61,26 @@ export default {
             if ((this.name != '') && this.validateEmail(this.email) && (this.message != '')) {
                 //Creo un nuovo url ed utilizzo la funzione nello state per inviare
                 const url = `${state.base_api_url}${state.contacts_endopoint}`;
-                console.log(url);
                 state.sendingEmail(url, payload);
+
+
             }
+        },
+
+        //Metodo per togliere il feedback di messaggio ricevuto
+        feedbackReset() {
+            state.feedback = '';
+            this.name = '';
+            this.email = '';
+            this.message = '';
         }
     }
 }
 </script>
 <template>
     <div class="contacts-btn">
-        <span class="d-none d-md-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions">Contact us</span>
+        <span class="d-none d-md-block" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" @click="feedbackReset()">Contact us</span>
         <i class="fa-solid fa-envelope d-md-none"></i>
     </div>
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBothOptions"
@@ -96,9 +110,12 @@ export default {
                     <textarea class="form-control" name="message" id="message" rows="5" v-model="message"></textarea>
                     <small v-if="this.error_message">{{ this.error_message }}</small>
                 </div>
-                <button type="submit" class="btn">
-                    Send
+                <button type="submit" class="btn" :disabled="state.loading">
+                    {{ state.loading ? 'Sending...' : 'Send' }}
                 </button>
+                <div v-if="state.feedback" class="py-2">
+                    <span>Message Sent</span>
+                </div>
             </form>
         </div>
     </div>
@@ -117,7 +134,4 @@ export default {
     box-shadow: 0px 2px 0px 0px var(--button-mag);
     opacity: 0.9;
 }
-
-
-
 </style>

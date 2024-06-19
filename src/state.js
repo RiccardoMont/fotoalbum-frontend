@@ -24,6 +24,10 @@ export const state = reactive({
 
     bestshoots_photos:[],
 
+    //Loader
+    loading: false,
+    feedback: false,
+
     
     
 
@@ -118,6 +122,8 @@ export const state = reactive({
             .post(url, payload)
             .then(resp => {
                 console.log(resp);
+                this.loading = false
+                this.feedback = 'Message Sent'
             })
             .catch(err => {
                 console.log(err);
