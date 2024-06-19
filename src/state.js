@@ -66,7 +66,7 @@ export const state = reactive({
             .get(url)
             .then(resp => {
                 this.gun_photos.push(resp.data.results);
-            })
+            })    
             .catch(err => {
                 console.error(err);
             })
@@ -78,7 +78,7 @@ export const state = reactive({
             .get(url)
             .then(resp => {
                 this.category_rows = [...resp.data.results];
-
+                
                 this.category_rows.forEach(category => {
                     const url = `${state.base_api_url}${state.categories_endpoint}/filter?category=${category.id}`;
                     this.fetchDataSearchGun(url);

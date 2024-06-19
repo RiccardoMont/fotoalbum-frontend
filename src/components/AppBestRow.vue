@@ -58,7 +58,7 @@ export default {
                                         <h3>{{ photo.photos[0].title }}</h3>
                                         <p>{{ photo.photos[0].description }}</p>
                                     </div>
-                                    <div class="badge_big"><span>{{ photo.title }}</span></div>
+                                    <div><span class="badge_big">{{ photo.title }}</span></div>
                                 </div>
                             </div>
                         </div>
@@ -153,5 +153,6 @@ export default {
     padding: 1rem;
     font-size: 22px;
     border-radius: 16px;
+
 }
 </style>
