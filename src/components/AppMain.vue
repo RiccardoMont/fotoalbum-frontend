@@ -2,35 +2,26 @@
 import axios from 'axios';
 import { state } from '../state';
 
-
 import AppCategoriesFilter from './AppCategoriesFilter.vue';
-import AppCategoriesRowsBody from './AppCategoriesRowsBody.vue';
-import AppBestRow from './AppBestRow.vue';
-import AppHighlightedRow from './AppHighlightedRow.vue';
+import AppHomeBody from './AppHomeBody.vue';
+import AppSearchBody from './AppSearchBody.vue';
+
 
 
 export default {
     name: 'AppMain',
     data() {
         return {
-            state,
-           
+            state
         }
     },
     components: {
-        AppBestRow,
         AppCategoriesFilter,
-        AppHighlightedRow,
-        AppCategoriesRowsBody
+        AppHomeBody,
+        AppSearchBody
     },
     methods: {
-        //Funzione per popolare sia le categorie che le foto al caricamento iniziale
-        initialApi() {
-            state.endpoints.forEach(end => {
-                const startingApi = `${state.base_api_url}${end}`;
-                state.fetchData(startingApi);
-            })
-        },
+        
 
         //Filtro per le foto etichettate "Highlighted" ("in evidenza")
         highlightedFilter() {
@@ -47,19 +38,14 @@ export default {
             }
         },
 
-    },
-    mounted() {
-        this.initialApi();
-        
     }
 }
 </script>
 <template>
     <div class="container">
         <AppCategoriesFilter></AppCategoriesFilter>
-        <AppBestRow></AppBestRow>
-        <AppHighlightedRow></AppHighlightedRow>
-        <AppCategoriesRowsBody></AppCategoriesRowsBody>
+        <AppHomeBody></AppHomeBody>
+        <!--<AppSearchBody></AppSearchBody>-->
     </div>
 </template>
 <style scoped>
